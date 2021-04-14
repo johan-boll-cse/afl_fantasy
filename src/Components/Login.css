@@ -1,0 +1,107 @@
+h1 {
+    margin-bottom: 5px;
+}
+
+.Login-Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 25%;
+    left: 30%;
+    z-index: 999;
+    background-color: white;
+    border: 3px solid black;
+    width: 40%;
+    height: 50%;
+    overflow: scroll;
+    min-width: 480px;
+    min-height: 400px;
+}
+
+.Form-Wrapper {
+    width: 50%;
+}
+
+#red {
+    color: red;
+}
+
+.Login-Title {
+    background-color: darkred;
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 0;
+    border-radius: 0 0 85% 85% / 30%;
+}
+
+.Close {
+    background-color: transparent;
+    outline: none;
+    font-size: 30px;
+    cursor: pointer;
+    position: absolute;
+    border: 2px solid white;
+    color: white;
+    border-radius: 5px;
+    top: 2px;
+    left: calc(100% - 52px);
+    width: 50px;
+    z-index: 1000;
+}
+
+.Close:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    transition: 0.4s ease;
+}
+
+.Error {
+    margin: 0;
+}
+
+.Submit {
+    background-color: darkred;
+    border-radius: 5px;
+    font-size: 20px;
+    font-family: "Orelega One", serif;
+    border: 2px solid black;
+    margin: 20px auto auto auto;
+    outline: none;
+    color: white;
+    width: 100%;
+}
+
+.Submit:hover {
+    background-color: darkgreen;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+.Submit:not(:hover) {
+    background-color: darkred;
+    transition: 0.5s ease;
+}
+
+.Input-Title {
+    margin-bottom: 5px;
+}
+
+.Input {
+    border: 2px solid black;
+    height: 20px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.Switch-Button {
+    background-color: transparent;
+    text-decoration: underline;
+    border: none;
+    outline: none;
+    color: darkred;
+    cursor: pointer;
+}

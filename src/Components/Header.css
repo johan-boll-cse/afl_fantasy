@@ -1,0 +1,161 @@
+body {
+    min-width: 1400px;
+}
+
+.Header-Wrapper {
+    height: 120px;
+    min-height: 120px;
+    width: 100%;
+    background-image: url("../Images/aflStadium.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-color: transparent;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0 85% 85% / 30%;
+    letter-spacing: 2px;
+}
+
+.In {
+    height: 80px;
+    min-height: 80px;
+}
+
+.Logo-Wrapper {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 700px;
+    margin: 0;
+}
+
+.Logo {
+    height: 40px;
+    min-width: 71px;
+    margin-left: 30px;
+    background-image: url("../Images/DefaultLogo.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+.Title {
+    font-size: 50px;
+    white-space: nowrap;
+    width: 100%;
+    text-align: center;
+}
+
+.Sign-Log-Wrapper {
+    width: 700px;
+    display: flex;
+    margin: 0;
+    align-items: center;
+}
+
+.SignUp-Wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 30px;
+    width: 130px;
+    margin-left: 0;
+    background-color: rgba(235, 0, 0, 0.5);
+    border-radius: 45px;
+    border: 2px solid white;
+    height: 40px;
+}
+
+.SignUp-Wrapper:hover {
+    background-color: rgb(255, 0, 0);
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+.SignUp-Wrapper:not(:hover) {
+    background-color: rgba(235, 0, 0, 0.5);
+    transition: 0.5s ease;
+}
+
+.Login-Wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 30px;
+    width: 130px;
+    margin-left: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 45px;
+    border: 2px solid white;
+    height: 40px;
+}
+
+.Login-Wrapper:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+.Login-Wrapper:not(:hover) {
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: 0.5s ease;
+}
+
+.Login {
+    font-size: medium;
+    margin: 10px 20px;
+    white-space: nowrap;
+}
+
+.Profile {
+    height: 25px;
+    width: 25px;
+    margin-right: 20px;
+}
+
+.SignUp {
+    font-size: medium;
+    text-align: center;
+    white-space: nowrap;
+    margin-right: 15px;
+}
+
+.Plus {
+    font-size: 35px;
+    margin: 0;
+}
+
+.Welcome {
+    font-size: medium;
+    margin-right: 20px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.Logout-Wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0;
+    width: 100px;
+    margin-left: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 45px;
+    border: 2px solid white;
+    height: 30px;
+    font-size: small;
+}
+
+.Logout-Wrapper:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+.Logout-Wrapper:not(:hover) {
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: 0.5s ease;
+}

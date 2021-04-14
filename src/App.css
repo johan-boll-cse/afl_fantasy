@@ -1,38 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Orelega+One&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: lightgray;
+    font-family: 'Orelega One', serif;
+    min-width: 1400px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+}
+
 .App {
-  text-align: center;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.In-Login {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    min-width: 1400px;
+    min-height: 1400px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Nav {
+    position: absolute;
+    top: 20px;
+    display: flex;
+    min-width: 55%;
+    height: 60px;
+    margin-left: 120px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.Nav-Button {
+    height: 30px;
+    outline: none;
+    color: white;
+    text-decoration: none;
+    background-color: transparent;
+    font-family: 'Orelega One', serif;
+    font-size: 18px;
+    white-space: nowrap;
+    padding: 10px 15px 0 15px;
+    border: none;
+    border-bottom: 2px solid transparent;
 }
 
-.App-link {
-  color: #61dafb;
+.Nav-Button:hover {
+    border-bottom: 2px solid white;
+    transition: 0.2s ease;
+    cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Nav-Button:not(:hover) {
+    border-bottom: 2px solid transparent;
+    transition: 0.2s ease;
+}
+
+.S {
+    background-color: darkred;
 }
