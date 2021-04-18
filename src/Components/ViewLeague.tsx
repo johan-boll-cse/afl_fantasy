@@ -18,8 +18,8 @@ class ViewLeague extends Component<ViewLeagueProps, ViewLeagueState> {
 
     render() {
         return(
-            <div className="View">
-                View League
+            <div className="View-League">
+                <h1>View League</h1>
             </div>
         )
     }

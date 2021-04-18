@@ -1,0 +1,49 @@
+th {
+    background-color: darkred;
+    color: white;
+}
+
+tr, td {
+    height: 50px;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #eee;
+}
+
+tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+h3 {
+    width: calc(100% - 320px);
+    padding-bottom: 20px;
+    border-bottom: 3px solid darkred;
+}
+
+.Info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Stat-Info {
+    width: 50%;
+    margin: 10px 0 40px 0;
+}
+
+.Info-Text {
+    margin: 10px 160px;
+    font-size: large;
+    text-indent: 40px;
+}
+
+.Green {
+    color: green;
+}
+
+.Row {
+    min-width: 80px;
+}

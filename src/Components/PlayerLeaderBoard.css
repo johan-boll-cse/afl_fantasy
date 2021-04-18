@@ -29,6 +29,10 @@ tr:nth-child(odd) {
     text-align: center;
 }
 
+.LB-Title {
+    margin: 20px;
+}
+
 .Flex {
     display: flex;
     flex-direction: row;
@@ -44,13 +48,35 @@ tr:nth-child(odd) {
 }
 
 .Round-Button {
+    background-color: white;
+    outline: none;
+    margin: 10px 5px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    width: 80px;
+}
 
+.Round-Button:hover {
+    background-color: ghostwhite;
+    cursor: pointer;
 }
 
 .Page-Button {
-
+    background-color: white;
+    border: 2px solid transparent;
+    outline: none;
+    margin: 10px 5px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 40px;
 }
 
-.Blue {
-    background-color: blue;
+.Page-Button:hover {
+    cursor: pointer;
+    background-color: ghostwhite;
+}
+
+.Selected {
+    border: 2px solid black;
 }

@@ -2,18 +2,17 @@ import React, { Component } from 'react';
 import './App.css';
 import Login from './Components/Login';
 import SignUp from "./Components/SignUp";
-import PlayerLeaderBoard from './Components/PlayerLeaderBoard';
 import Header from './Components/Header';
+import NavBar from './Components/NavBar';
+import firebase from './Components/firebase';
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import ViewTeam from "./Components/ViewTeam";
 import PickPlayers from "./Components/PickPlayers";
+import PlayerLeaderBoard from "./Components/PlayerLeaderBoard";
 import ViewLeague from "./Components/ViewLeague";
-import firebase from './Components/firebase';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+import Info from "./Components/Info";
+// import * as Utils from './Components/Utils';
+
 
 /**
  * username: the current logged in user, or undefined if not logged in
@@ -25,7 +24,6 @@ interface AppState {
     username: string | undefined,
     loggingIn : boolean,
     signingUp : boolean,
-    curPage : string
     stats : any
 }
 
@@ -36,7 +34,6 @@ class App extends Component<any, AppState>{
             username: undefined,
             loggingIn: false,
             signingUp: false,
-            curPage: "View Team",
             stats : undefined
         }
     }
@@ -126,44 +123,14 @@ class App extends Component<any, AppState>{
             } else {
                 appDisplay = (
                     <div key={"NotLoggedIn"}>
-                        Log In or Sign Up to make a team!
+                        <h1>Log In or Sign Up to make a team!</h1>
                     </div>
                 )
             }
         } else {
             appDisplay = (
                 <Router>
-                    <div>
-                        <div className="Nav">
-                            <Link className={this.state.curPage === "View Team" ? "Nav-Button S" : "Nav-Button"}
-                                  onClick={() => this.setState({
-                                      curPage: "View Team"
-                                  })}
-                                  to="/">View Team</Link>
-                            <Link className={this.state.curPage === "Pick Players" ? "Nav-Button S" : "Nav-Button"}
-                                  onClick={() => this.setState({
-                                      curPage: "Pick Players"
-                                  })}
-                                  to="/pick-players">Pick Players</Link>
-                            <Link className={this.state.curPage === "Player Leaderboards" ? "Nav-Button S" : "Nav-Button"}
-                                  onClick={() => this.setState({
-                                      curPage: "Player Leaderboards"
-                                  })}
-                                  to="/player-leaderboard">Player Leaderboard</Link>
-                            <Link className={this.state.curPage === "League Standings" ? "Nav-Button S" : "Nav-Button"}
-                                  onClick={() => this.setState({
-                                      curPage: "League Standings"
-                                  })}
-                                  to="/view-league">League Standings</Link>
-                        </div>
-
-                        {/*
-          A <Switch> looks through all its children <Route>
-          elements and renders the first one whose path
-          matches the current URL. Use a <Switch> any time
-          you have multiple routes, but you want only one
-          of them to render at a time
-        */}
+                    <NavBar />
                         <Switch>
                             <Route exact path="/">
                                 <ViewTeam />
@@ -177,8 +144,10 @@ class App extends Component<any, AppState>{
                             <Route path="/view-league">
                                 <ViewLeague />
                             </Route>
+                            <Route path="/info">
+                                <Info />
+                            </Route>
                         </Switch>
-                    </div>
                 </Router>
             )
         }

@@ -1,0 +1,79 @@
+.Pick-Players {
+    text-align: center;
+}
+
+.Choose-Field-Container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.Choose-Players-Container {
+    display: flex;
+    flex-direction: column;
+    width: 30%
+}
+
+.Sort-Players {
+    height: 84px;
+    width: 100%;
+    margin: 5px 0;
+    border: 3px solid black
+}
+
+.Players-Container {
+    width: 100%;
+    min-height: 480px;
+    height: 480px;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid black;
+    background-color: transparent;
+    margin-right: 40px;
+    overflow-x: hidden;
+}
+
+.Player-Card {
+    background-color: white;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    margin: 0 0 2px 0;
+    padding: 0;
+}
+
+.Player {
+    white-space: nowrap;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding-top: 10px;
+}
+
+.Team-Score {
+    margin: 0 10px 0 20px;
+    width: 100%;
+
+}
+
+.Player-Text {
+    margin: 2px 0;
+    text-align: end;
+    white-space: nowrap;
+}
+
+.Field {
+    height: 580px;
+    width: 820px;
+    background-image: url("../Images/AFLField.png");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    border: 3px solid black;
+    margin-left: 40px;
+    position: relative;
+}
+

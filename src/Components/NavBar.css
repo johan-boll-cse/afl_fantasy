@@ -1,0 +1,38 @@
+
+.Nav {
+    position: absolute;
+    top: 20px;
+    display: flex;
+    min-width: 55%;
+    height: 60px;
+    margin-left: 120px;
+}
+
+.Nav-Button {
+    height: 30px;
+    outline: none;
+    color: white;
+    text-decoration: none;
+    background-color: transparent;
+    font-family: 'Orelega One', serif;
+    font-size: 18px;
+    white-space: nowrap;
+    padding: 10px 15px 0 15px;
+    border: none;
+    border-bottom: 2px solid transparent;
+}
+
+.Nav-Button:hover {
+    border-bottom: 2px solid white;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+
+.Nav-Button:not(:hover) {
+    border-bottom: 2px solid transparent;
+    transition: 0.2s ease;
+}
+
+.S {
+    background-color: darkred;
+}

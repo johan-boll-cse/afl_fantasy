@@ -18,8 +18,8 @@ class ViewTeam extends Component<ViewTeamProps, ViewTeamState> {
 
     render() {
         return(
-            <div className="View">
-                View Team
+            <div className="View-Team">
+                <h1>View Team</h1>
             </div>
         )
     }
