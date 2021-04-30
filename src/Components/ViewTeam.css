@@ -1,0 +1,74 @@
+.View-Team {
+    text-align: center;
+}
+
+#Total-Row {
+    font-size: x-large;
+    border-top: 5px solid black !important;
+}
+
+.View-Team table {
+    border-collapse: collapse;
+    width: 90%;
+    margin: 10px 5%;
+    border: 2px solid black;
+}
+
+.View-Team th {
+    background-color: darkred;
+    color: white;
+    border: 1px solid grey;
+}
+
+.View-Team td, tr {
+    border: 1px solid grey;
+    height: 50px;
+    text-align: center;
+}
+
+.View-Team h2 {
+    margin: 10px;
+}
+
+.Player-Card-Container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.Player-Card-Margin {
+    margin: 5px;
+}
+
+.Score-Text {
+    background-color: gold;
+    font-size: large;
+    margin: -20px 0 0 0;
+    padding-top: 20px;
+    z-index: 0;
+    border-radius: 0 0 15px 15px;
+    border: 2px solid black;
+}
+
+.Total {
+    position: relative;
+    height: 30px;
+    width: 100px;
+    font-size: large;
+    margin: 5px 0 0 0;
+    padding-top: 90px;
+    background-color: black;
+    border-radius: 10%;
+    color: gold;
+    z-index: 10;
+}
+
+.Total:hover {
+    cursor: pointer;
+    transform: scale(1.08, 1.08);
+}
+
+.Total-Container {
+    border-left: 5px solid black;
+    padding-left: 5px;
+}

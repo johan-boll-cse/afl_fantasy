@@ -1,0 +1,57 @@
+.Player-Display {
+
+}
+
+.Player-Display table {
+    border-collapse: collapse;
+    border: 2px solid black;
+}
+
+.Player-Display th {
+    position: sticky;
+    background-color: darkred;
+    color: white;
+    top: -2px;
+}
+
+.Player-Display th, td, tr {
+    border: 1px solid grey;
+}
+
+.Filter-Players {
+    height: 95px;
+    width: 500px;
+    margin: 0 0 5px 0;
+}
+
+.Players-Container {
+    min-width: 500px;
+    max-width: 500px;
+    min-height: 440px;
+    height: 440px;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid black;
+    background-color: transparent;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.Selected-Page {
+    background-color: darkred !important;
+    color: white;
+}
+
+.Page-Button-Small {
+    background-color: transparent;
+    outline: none;
+    border: 2px solid black;
+    margin: 5px 4px;
+    width: 35px;
+}
+
+.Page-Button-Small:hover {
+    cursor: pointer;
+    background-color: ghostwhite;
+}

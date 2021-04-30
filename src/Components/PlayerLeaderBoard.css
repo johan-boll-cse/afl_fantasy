@@ -1,28 +1,65 @@
-table {
+.LB table {
     width: 95%;
     text-align: left;
     border: 2px solid black;
     margin-left: auto;
     margin-right: auto;
-    font-size: large;
+    font-size: medium;
+    border-collapse: collapse;
 }
 
-th {
+.LB th {
     background-color: darkred;
+    border: 1px solid grey;
     color: white;
 }
 
-tr, td {
+.LB tr, td {
     height: 50px;
     text-align: center;
 }
 
-tr:nth-child(even) {
+.LB tr:nth-child(even) {
     background-color: #eee;
 }
 
-tr:nth-child(odd) {
+.LB tr:nth-child(odd) {
     background-color: #fff;
+}
+
+.Position-Wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.Positions {
+    display: flex;
+    flex-direction: row;
+    font-size: small;
+    text-align: center;
+    justify-content: center;
+}
+
+.Position-Title {
+    border-bottom: 1px solid grey;
+    padding-bottom: 5px;
+    margin: 0;
+}
+
+.Position-Text {
+    border-top: none;
+    width: 70px;
+    height: 100%;
+    margin: 0;
+    padding-top: 5px;
+}
+
+.Score-Cell {
+    width: 70px;
+}
+
+.Stat-Cells {
+    font-size: small;
 }
 
 .LB {

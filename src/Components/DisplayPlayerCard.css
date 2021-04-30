@@ -1,0 +1,38 @@
+.Display-Player-Card {
+
+}
+
+.In-Team {
+    background-color: rgba(255, 0, 0, 0.2) !important;
+}
+
+.Selecting-Player {
+    cursor: pointer;
+}
+
+.Selecting-Player:hover {
+    background-color: rgba(0, 155, 0, 0.2) !important;
+}
+
+.Player-Card {
+    background-color: white;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
+
+.Player {
+    height: 100%;
+    margin: 0;
+    padding-top: 10px;
+}
+
+.Team-Score {
+    margin: 0 10px 0 20px;
+}
+
+.Player-Text {
+    margin: 2px 0;
+}

@@ -1,9 +1,15 @@
-th {
-    background-color: darkred;
-    color: white;
+.Info table {
+    border: 2px solid black;
+    border-collapse: collapse;
 }
 
-tr, td {
+.Info th {
+    background-color: darkred;
+    color: white;
+    border: 1px solid grey;
+}
+
+.Info tr, td {
     height: 50px;
     text-align: center;
 }

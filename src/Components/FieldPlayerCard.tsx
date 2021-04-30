@@ -9,7 +9,9 @@ interface FieldPlayerCardProps {
     left: boolean,
     isSelected: boolean,
     selectCard() : void,
-    player : any,
+    unSelectCard() : void,
+    player : string | null,
+    isPick : boolean
 }
 
 interface FieldPlayerCardState {
@@ -31,7 +33,6 @@ class FieldPlayerCard extends Component<FieldPlayerCardProps, FieldPlayerCardSta
         let playerName : string = "";
         let imageClassName : string = "Player-Image Plus-Icon";
         let imageURL : string | undefined = plusIcon;
-        console.log(this.props.player)
         if (this.props.player) {
             playerName = this.props.player
             imageURL = player_images.playerImagesUrls.get(playerName);
@@ -40,20 +41,26 @@ class FieldPlayerCard extends Component<FieldPlayerCardProps, FieldPlayerCardSta
                 imageClassName = "Player-Image No-Image";
             } else {
                 imageClassName = "Player-Image";
-
             }
         }
-        let playerFontScale = 40 / playerName.length + 10;
+        let removeButton : any;
+        if (this.props.player) {
+            removeButton =
+                <button className="Remove-Player-Button" onClick={this.props.unSelectCard}>
+                -
+                </button>
+        }
+        let playerFontScale = 100 / playerName.length + 6;
         return(
             <div className={containerClassName} onClick={this.props.selectCard}>
                 <div className={"Field-Card" + selected}>
+                    {this.props.isPick ? removeButton : <div/>}
                     <div className="Field-Card-Box">
                         <img className={imageClassName} src={imageURL} alt={"AFL-Player"}/>
                         <p className="Card-Player-Name" style={{fontSize: playerFontScale + "px"}}>{playerName}</p>
                     </div>
                     <p className="Field-Card-Title"> {this.props.position}</p>
                 </div>
-                <div className="Field-Card-Marker"/>
             </div>
         )
     }

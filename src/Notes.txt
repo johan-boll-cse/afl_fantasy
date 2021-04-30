@@ -1,0 +1,16 @@
+Some notes about updating the app:
+
+Each round the app will need to:
+
+At the end of the previous round:
+1. Refresh the round timer to be the time of the start of the next round (UNRESOLVED: Not Implemented)
+2. Web scrape all of the stats from the previous round (SOLVED: With Python and Firestore DB)
+3. Web scrape the images of the new players (KIND OF SOLVED: With Python, but still manual due to name misalignments between websites.
+4. Update all user stats for the previous round (UNRESOLVED: Not Implemented)
+5. Change the 'currentRound' constant in Utils to be the next round (UNRESOLVED: Manual)
+6. Update the players to include injuries and new players that will be in the next round(UNRESOLVED)
+
+At the start of the next round:
+1. Refresh the round timer to indicate the end of this round (UNRESOLVED)
+2. Lock the Pick Players for the round (UNRESOLVED)
+

@@ -60,7 +60,7 @@ class Info extends Component<InfoProps, InfoState> {
                 </p>
                 <h3>Leagues</h3>
                 <p className="Info-Text">
-                    At the start of the season, you can join a league with up to 10 people. In the League Standings tab, you can
+                    At the start of the season, you can join a league with up to 50 people. In the League Standings tab, you can
                     check on other people's teams and see how your team scores compare.
                 </p>
                 <p/>
