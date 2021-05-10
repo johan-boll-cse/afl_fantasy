@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import './Login.css';
 import firebase from "./firebase";
-
-const MAX_INPUT_LEN = 24;
+import * as Utils from './Utils';
 
 /**
  * setUser(username): sets the username in App and logs in the user specified by the username parameter
@@ -49,8 +48,8 @@ class Login extends Component<LoginProps, LoginState> {
 
     handleUsernameChange = (event : any) => {
         const updateUser = event.target.value;
-        if (updateUser.length > MAX_INPUT_LEN) {
-            this.updateMessages("Username must be shorter than " + MAX_INPUT_LEN + " characters");
+        if (updateUser.length > Utils.MAX_INPUT_LEN) {
+            this.updateMessages("Username must be shorter than " + Utils.MAX_INPUT_LEN + " characters");
         } else {
             this.setState( {
                 username : updateUser
@@ -60,8 +59,8 @@ class Login extends Component<LoginProps, LoginState> {
 
     handlePasswordChange = (event : any) => {
         const updatePass = event.target.value;
-        if (updatePass.length > MAX_INPUT_LEN) {
-            const errorMessage = "Password must be shorter than " + MAX_INPUT_LEN + " characters";
+        if (updatePass.length > Utils.MAX_INPUT_LEN) {
+            const errorMessage = "Password must be shorter than " + Utils.MAX_INPUT_LEN + " characters";
             this.updateMessages(errorMessage)
         } else {
             this.setState( {

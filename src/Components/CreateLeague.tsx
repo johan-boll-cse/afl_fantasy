@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './CreateLeague.css';
 import firebase from "./firebase";
+import * as Utils from "./Utils";
 
 interface CreateLeagueProps {
     handleClose() : void,
-    username : string
+    username : string,
+    userTeam : any,
+    stats : any
 }
 
 interface CreateLeagueState {
@@ -70,9 +73,12 @@ class CreateLeague extends Component<CreateLeagueProps, CreateLeagueState> {
 
     // Adds a user to the database with a salt and hashed password
     addLeague = (databaseRef : any) => {
+        let userScores : any = {};
+        userScores[this.props.username] = Utils.getAllRoundScores(this.props.userTeam, this.props.stats);
         databaseRef.add({
             leagueName: this.state.leagueName,
-            users: [this.props.username]
+            users: [this.props.username],
+            userScores: userScores
         });
     }
 

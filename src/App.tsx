@@ -14,6 +14,10 @@ import Info from "./Components/Info";
 import * as Utils from './Components/Utils';
 import Countdown from "./Components/Countdown";
 
+// TODO: add comments, make it look nice, then make it update each round.
+// ALSO TODO: Organize files.
+// ALSO TODO: Make the leagues update when invites are accepted somehow.
+
 /**
  * username: the current logged in user, or undefined if not logged in
  * loggingIn: if the user is currently logging in
@@ -26,6 +30,7 @@ interface AppState {
     loggingIn : boolean,
     signingUp : boolean,
     stats : any,
+    leagueInvites : string[] | undefined
 }
 
 class App extends Component<any, AppState>{
@@ -37,6 +42,7 @@ class App extends Component<any, AppState>{
             loggingIn: false,
             signingUp: false,
             stats : undefined,
+            leagueInvites : undefined
         }
     }
 
@@ -64,6 +70,7 @@ class App extends Component<any, AppState>{
     }
 
     // Fetches the user's team from the firestore database if user is logged in
+    // Adds an empty team with the given username if the user's team is not found
     getUserTeam = (username : string) : void => {
         const userDB = firebase.firestore().collection("userTeams");
         let loadedTeam : any;
@@ -89,13 +96,53 @@ class App extends Component<any, AppState>{
             });
     }
 
+    getUserInvites = (username : string) => {
+        const invitesDB = firebase.firestore().collection("leagueInvites");
+        invitesDB.where('username', '==', username).get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    // doc.data() is never undefined for query doc snapshots
+                    this.setState({
+                        leagueInvites: doc.data()['leagues']
+                    });
+                });
+            })
+            .catch((error) => {
+                console.log("Error getting documents: ", error);
+            });
+    }
+
+    // TODO: update ViewLeague when this is done and make it display the new league.
+    removeLeagueInvite = (leagueName : string) => {
+        const invitesDB = firebase.firestore().collection("leagueInvites");
+        invitesDB.where('username', '==', this.state.username).get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    // doc.data() is never undefined for query doc snapshots
+                    const curInvites : string[] = doc.data()['leagues'];
+                    const leagueIndex = curInvites.indexOf(leagueName);
+                    curInvites.splice(leagueIndex, 1);
+                    this.setState({
+                        leagueInvites: curInvites
+                    });
+                    invitesDB.doc(doc.id).set({
+                        leagues: curInvites
+                    }, {merge: true})
+                });
+            })
+            .catch((error) => {
+                console.log("Error getting documents: ", error);
+            });
+    }
+
     // Sets the user and loads in their team, if the user has one saved
     setUser = (username : string) => {
-        this.getUserTeam(username)
+        this.getUserTeam(username);
+        this.getUserInvites(username);
         this.setState({
             username : username,
             signingUp : false,
-            loggingIn: false,
+            loggingIn: false
         })
     }
 
@@ -118,6 +165,7 @@ class App extends Component<any, AppState>{
             loggingIn: false,
             signingUp: false,
             username: undefined,
+            userTeam: undefined
         })
     }
 
@@ -171,10 +219,7 @@ class App extends Component<any, AppState>{
             } else if (this.state.signingUp) {
                 appDisplay = (
                     <div key={"SigningUp"}>
-                        <SignUp setUser={(username : string) => this.setState({
-                            username : username,
-                            signingUp : false,
-                            loggingIn: false})}
+                        <SignUp setUser={(username : string) => this.setUser(username)}
                                 handleClose={() => this.setState({
                                     loggingIn: false,
                                     signingUp: false
@@ -211,12 +256,18 @@ class App extends Component<any, AppState>{
             }
             if (this.state.userTeam && this.state.stats) {
                 viewTeam = (<ViewTeam userTeam={this.state.userTeam} username={undefined} stats={this.state.stats}/>);
-                viewLeague = (<ViewLeague username={this.state.username}
-                            leagues={["Global", "Fake League"]}
-                            stats={this.state.stats}
-                />);
             } else {
                 viewTeam = (<div><p> Loading</p></div>);
+            }
+            if (this.state.userTeam && this.state.stats && this.state.leagueInvites) {
+                viewLeague = (<ViewLeague username={this.state.username}
+                                          userTeam={this.state.userTeam}
+                                          leagues={["Global", "Fake League"]}
+                                          stats={this.state.stats}
+                                          leagueInvites={this.state.leagueInvites}
+                                          removeInvite={(leagueName:string) => this.removeLeagueInvite(leagueName)}
+                />);
+            } else {
                 viewLeague = (<div><p> Loading</p></div>);
             }
             appDisplay = (

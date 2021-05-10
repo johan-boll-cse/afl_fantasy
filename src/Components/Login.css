@@ -94,7 +94,7 @@ h1 {
     border: 2px solid black;
     height: 20px;
     border-radius: 5px;
-    width: 100%;
+    width: calc(100% - 8px);
 }
 
 .Switch-Button {

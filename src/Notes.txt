@@ -1,11 +1,18 @@
+Notes about when a user creates an account:
+1. Add the new user to users with password and salt
+2. Add the new user to leagueInvites with empty leagues field
+3. Add the new user to the 'Global' league
+
 Some notes about updating the app:
 
 Each round the app will need to:
 
 At the end of the previous round:
+-- More now that I have updated all of the databases, will need to update: leagues
+
 1. Refresh the round timer to be the time of the start of the next round (UNRESOLVED: Not Implemented)
 2. Web scrape all of the stats from the previous round (SOLVED: With Python and Firestore DB)
-3. Web scrape the images of the new players (KIND OF SOLVED: With Python, but still manual due to name misalignments between websites.
+3. Web scrape the images of the new players (KIND OF SOLVED: With Python, but still manual due to name misalignments between websites)
 4. Update all user stats for the previous round (UNRESOLVED: Not Implemented)
 5. Change the 'currentRound' constant in Utils to be the next round (UNRESOLVED: Manual)
 6. Update the players to include injuries and new players that will be in the next round(UNRESOLVED)
@@ -14,3 +21,7 @@ At the start of the next round:
 1. Refresh the round timer to indicate the end of this round (UNRESOLVED)
 2. Lock the Pick Players for the round (UNRESOLVED)
 
+Notes about what to implement in the future:
+
+1. Player cost so teams do not consist of only forwards - Pull stats from 2020 and 2021 to calculate cost for each player
+2. League Invitations

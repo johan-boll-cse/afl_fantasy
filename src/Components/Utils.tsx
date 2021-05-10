@@ -160,6 +160,30 @@ export const getTableHTML = (players : (string | null)[], roundNum : string, sta
     )
 }
 
+export const getRoundPlayerScores = (userTeam : any, roundSelected : string, stats : any) : number[] => {
+    let playerScores : number[] = []
+    positionArr.map((position : string, index) => playerScores.push(
+        getPlayerScore(getSpecificPlayerMap(stats,
+            [userTeam[roundSelected][index]])[0], roundSelected, position.slice(0, position.length - 1))
+    ));
+    return playerScores
+}
+
+export const getAllRoundScores = (userTeam : any, stats : any) : number[] => {
+    let result : number[] = []
+    let overallTotal : number = 0;
+    for (let i = 0; i < justRounds.length; i++) {
+        let roundTotal : number = 0;
+        let playerScores : number[] = getRoundPlayerScores(userTeam, justRounds[i], stats);
+        playerScores.map((score : number) => roundTotal += score);
+        overallTotal += roundTotal;
+        result.push(roundTotal);
+    }
+    result.push(overallTotal);
+    return result
+}
+
+
 /**
  * Used in App to get the url pathname selected at the moment
  * (used because browsers auto load the last selected path on login and we want to
@@ -318,6 +342,12 @@ export const formatName = (playerName : string) => {
 /**
  * Constants:
  */
+// Max input length for all input fields
+export const MAX_INPUT_LEN = 48;
+
+// Min input length for signing up
+export const MIN_INPUT_LEN = 4;
+
 // Titles of the nav bar
 export const navTitles = ["View Team", "Pick Players", "Player Leaderboard", "League Standings", "Info"];
 

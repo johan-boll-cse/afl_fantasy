@@ -65,12 +65,9 @@ class ViewTeam extends Component<ViewTeamProps, ViewTeamState> {
                 <p> Select a player card above to see a player's score calculation, or select the Total card to see the team's overall performance for the round.</p>
             )
         }
-        let playerScores : number[] = []
-        Utils.positionArr.map((position : string, index) => playerScores.push(
-            Utils.getPlayerScore(Utils.getSpecificPlayerMap(this.props.stats, [this.props.userTeam[this.state.roundSelected][index]])[0], this.state.roundSelected, position.slice(0, position.length - 1))
-        ));
+        let playerScores = Utils.getRoundPlayerScores(this.props.userTeam, this.state.roundSelected, this.props.stats);
         let total : number = 0;
-        Utils.positionArr.map((position : string, index) => total += playerScores[index]);
+        playerScores.map((score : number) => total += score);
         let title : any = this.props.username ? <div/> : <h1>View Team</h1>;
         return (
             <div className="View-Team">

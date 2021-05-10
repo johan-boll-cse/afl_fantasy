@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import './Login.css';
 import firebase from "./firebase";
-
-const MAX_INPUT_LEN = 24;
-const MIN_INPUT_LEN = 4;
+import * as Utils from './Utils';
 
 
 /**
  * setUser(username): sets the username in App and logs in the user specified by the username parameter
+ * handleClose(): closes the sign up pop up
+ * handleLogin(): switches over to the login pop up
  */
 interface SignUpProps {
     setUser(username : string) : void,
@@ -52,8 +52,8 @@ class SignUp extends Component<SignUpProps, SignUpState> {
 
     handleUsernameChange = (event : any) => {
         const updateUser = event.target.value;
-        if (updateUser.length > MAX_INPUT_LEN) {
-            this.updateMessages("Username must be shorter than " + MAX_INPUT_LEN + " characters");
+        if (updateUser.length > Utils.MAX_INPUT_LEN) {
+            this.updateMessages("Username must be shorter than " + Utils.MAX_INPUT_LEN + " characters");
         } else {
             this.setState( {
                 username : updateUser
@@ -63,8 +63,8 @@ class SignUp extends Component<SignUpProps, SignUpState> {
 
     handlePasswordChange = (event : any) => {
         const updatePass = event.target.value;
-        if (updatePass.length > MAX_INPUT_LEN) {
-            const errorMessage = "Password must be shorter than " + MAX_INPUT_LEN + " characters";
+        if (updatePass.length > Utils.MAX_INPUT_LEN) {
+            const errorMessage = "Password must be shorter than " + Utils.MAX_INPUT_LEN + " characters";
             this.updateMessages(errorMessage)
         } else {
             this.setState( {
@@ -75,8 +75,8 @@ class SignUp extends Component<SignUpProps, SignUpState> {
 
     handleConfirmPasswordChange = (event : any) => {
         const updatePass = event.target.value;
-        if (updatePass.length > MAX_INPUT_LEN) {
-            const errorMessage = "Password must be shorter than " + MAX_INPUT_LEN + " characters";
+        if (updatePass.length > Utils.MAX_INPUT_LEN) {
+            const errorMessage = "Password must be shorter than " + Utils.MAX_INPUT_LEN + " characters";
             this.updateMessages(errorMessage)
         } else {
             this.setState( {
@@ -111,14 +111,14 @@ class SignUp extends Component<SignUpProps, SignUpState> {
     }
 
     validateUser = (userInfo : any, databaseRef : any) => {
-        let messageUser = "Username must be at least " + MIN_INPUT_LEN + " characters long";
-        let messagePass = "Password must be at least " + MIN_INPUT_LEN + " characters long";
+        let messageUser = "Username must be at least " + Utils.MIN_INPUT_LEN + " characters long";
+        let messagePass = "Password must be at least " + Utils.MIN_INPUT_LEN + " characters long";
         let badSignUp = false;
-        if (this.state.username.length < MIN_INPUT_LEN) {
+        if (this.state.username.length < Utils.MIN_INPUT_LEN) {
             badSignUp = true;
             this.updateMessages(messageUser)
         }
-        if (this.state.password.length < MIN_INPUT_LEN) {
+        if (this.state.password.length < Utils.MIN_INPUT_LEN) {
             badSignUp = true;
             this.updateMessages(messagePass)
         }
@@ -139,7 +139,6 @@ class SignUp extends Component<SignUpProps, SignUpState> {
             });
         } else {
             this.addUser(databaseRef);
-            this.props.setUser(this.state.username);
         }
     }
 
@@ -160,17 +159,40 @@ class SignUp extends Component<SignUpProps, SignUpState> {
             password: encryptPW,
             salt: salt
         });
+        this.addUserOtherDB()
     }
 
-    /* For later
-    addUserPrefs = () => {
-        const databaseRef = firebase.firestore().collection("userPrefs");
-        databaseRef.add({
-            user: this.state.username,
-            number: 0
+    addUserOtherDB = () => {
+        const databaseRefLeagues = firebase.firestore().collection("leagues");
+        databaseRefLeagues.where('leagueName', '==', "Global").get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    // doc.data() is never undefined for query doc snapshots
+                    const curUsers : string[] = doc.data()['users'];
+                    curUsers.push(this.state.username);
+                    const curUserScores : any = doc.data()['userScores'];
+                    const userScores : number[] = []
+                    Utils.roundOptions.map(() => userScores.push(0));
+                    curUserScores[this.state.username] = userScores;
+                    databaseRefLeagues.doc(doc.id).set({
+                        users: curUsers,
+                        userScores: curUserScores
+                    }, {merge: true}).then(() =>
+                        this.props.setUser(this.state.username)
+                    ).catch((error) => {
+                        console.log("Error getting documents: ", error);
+                    });
+                });
+            })
+            .catch((error) => {
+                console.log("Error getting documents: ", error);
+            });
+        const databaseRefInvites = firebase.firestore().collection("leagueInvites");
+        databaseRefInvites.add({
+            username: this.state.username,
+            leagues: []
         });
     }
-    */
 
     render() {
         return (

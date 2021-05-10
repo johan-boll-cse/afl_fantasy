@@ -2,6 +2,35 @@
     text-align: center;
 }
 
+.View-League table {
+    width: 95%;
+    text-align: left;
+    border: 2px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: medium;
+    border-collapse: collapse;
+}
+
+.View-League th {
+    background-color: darkred;
+    border: 1px solid grey;
+    color: white;
+}
+
+.View-League tr, td {
+    height: 50px;
+    text-align: center;
+}
+
+.View-League tr:nth-child(even) {
+    background-color: #eee;
+}
+
+.View-League tr:nth-child(odd) {
+    background-color: #fff;
+}
+
 .League-Display {
     display: flex;
     flex-direction: column;
@@ -92,35 +121,83 @@
     overflow: scroll;
 }
 
-.League-User-Button {
-    background-color: transparent;
-    border: 2px solid black;
-    margin: 5px 0;
-    height: 50px;
-}
-
-.League-User-Button:hover {
-    cursor: pointer;
-    background-color: lightgreen;
-}
-
 .League-League-Button {
     background-color: transparent;
     border: 2px solid black;
     margin: 5px 0;
     height: 50px;
+    display: flex;
+    flex-direction: row;
 }
 
 .League-League-Button:hover {
     cursor: pointer;
-    background-color: lightgreen;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .League-Text {
     margin-left: 20px;
+    width: 80%;
 }
 
-.User-Text {
-    margin-left: 20px;
+.Num-Users {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
 }
 
+.Num-Users-Text {
+    margin-right: 10px;
+}
+
+.Profile-Icon-Leagues {
+    height: 25px;
+    width: 25px;
+}
+
+.League-Table-Column-User:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.Back-Button {
+    width: 200px;
+    outline: none;
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+}
+
+.Back-Button:hover {
+    color: white;
+    background-color: darkred;
+    border: 2px solid white;
+}
+
+.Back-Button:not(:hover) {
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+}
+
+.Invite-Button {
+    width: 200px;
+    outline: none;
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+}
+
+.Invite-Button:hover {
+    color: white;
+    background-color: green;
+    border: 2px solid white;
+}
+
+.Invite-Button:not(:hover) {
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+}
