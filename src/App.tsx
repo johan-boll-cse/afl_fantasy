@@ -270,9 +270,15 @@ class App extends Component<any, AppState>{
             } else {
                 viewLeague = (<div><p> Loading</p></div>);
             }
+            let nav : any;
+            if (this.state.leagueInvites) {
+                nav = (<NavBar numInvites={this.state.leagueInvites.length}/>)
+            } else {
+                nav = (<div/>)
+            }
             appDisplay = (
                 <Router>
-                    <NavBar />
+                    {nav}
                         <Switch>
                             <Route exact path="/">
                                 {viewTeam}

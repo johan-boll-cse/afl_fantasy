@@ -6,6 +6,7 @@ import profileIcon from '../Images/profileIcon.png';
 /**
  * username: the current logged in user, or undefined if not logged in
  * inLogin: if the user is currently in the login screen
+ * numInvites: number of league invites - to be shown as a notification on Leagues
  * handle_____(): handles Login, Sign Up, and Logout buttons for the header
  */
 interface HeaderProps {

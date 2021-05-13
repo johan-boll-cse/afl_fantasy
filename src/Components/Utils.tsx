@@ -327,7 +327,11 @@ export const getEmptyTeam = () => {
  *
  */
 export const roundWithSpace = (roundNum:string) => {
-    return roundNum.slice(0, 5) + " " + roundNum.slice(5, 6);
+    if (roundNum.length > 5) {
+        return roundNum.slice(0, 5) + " " + roundNum.slice(5);
+    } else {
+        return roundNum;
+    }
 }
 
 /**
@@ -349,7 +353,7 @@ export const MAX_INPUT_LEN = 48;
 export const MIN_INPUT_LEN = 4;
 
 // Titles of the nav bar
-export const navTitles = ["View Team", "Pick Players", "Player Leaderboard", "League Standings", "Info"];
+export const navTitles = ["View Team", "Pick Players", "Player Leaderboard", "Leagues", "Info"];
 
 // Associated names of the url path
 export const pathNames = ["/", "/pick-players", "/player-leaderboard", "/view-league", "/info"];

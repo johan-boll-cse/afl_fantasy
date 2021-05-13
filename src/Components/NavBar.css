@@ -1,4 +1,3 @@
-
 .Nav {
     position: absolute;
     top: 20px;
@@ -6,6 +5,11 @@
     min-width: 55%;
     height: 60px;
     margin-left: 120px;
+}
+
+.Nav-Wrapper {
+    margin: 0;
+    position: relative;
 }
 
 .Nav-Button {
@@ -17,7 +21,7 @@
     font-family: 'Orelega One', serif;
     font-size: 18px;
     white-space: nowrap;
-    padding: 10px 15px 0 15px;
+    padding: 10px 15px;
     border: none;
     border-bottom: 2px solid transparent;
 }
@@ -35,4 +39,20 @@
 
 .S {
     background-color: darkred;
+}
+
+.Notification {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transform: translate(-80%, -70%);
+    background-color: royalblue;
+    height: 20px;
+    width: 20px;
+    color: white;
+    border-radius: 100%;
+    padding: 6px 3px 0 3px;
+    text-align: center;
+    font-size: small;
+    z-index: 10;
 }

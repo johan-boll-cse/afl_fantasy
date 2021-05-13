@@ -37,6 +37,33 @@
     align-items: center;
 }
 
+.Invites {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+.Invite-Row {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid black;
+    width: 100%;
+}
+
+.Invitation-Button {
+
+}
+
+.Join-Button {
+
+}
+
+.Decline-Button {
+
+}
+
 .Pop-Up {
     display: flex;
     flex-direction: column;
@@ -162,42 +189,86 @@
     cursor: pointer;
 }
 
-.Back-Button {
-    width: 200px;
+.League-Button-Wrapper {
+    display: flex;
+}
+
+.Your-League-Button-Wrapper {
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    width: 120px;
+    max-height: 50px;
+    min-height: 50px;
+    font-family: "Orelega One", serif;
+    font-size: medium;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-left: 80%;
+}
+
+.Your-League-Button-Wrapper:hover {
+    background-color: ghostwhite;
+    cursor: pointer;
+}
+
+.Invite-Text {
+    margin-right: 10px;
+}
+
+.Your-League-Button {
+    background-color: white;
     outline: none;
-    border: 2px solid black;
-    background-color: white;
-    color: black;
-}
-
-.Back-Button:hover {
-    color: white;
-    background-color: darkred;
-    border: 2px solid white;
-}
-
-.Back-Button:not(:hover) {
-    border: 2px solid black;
-    background-color: white;
-    color: black;
-}
-
-.Invite-Button {
-    width: 200px;
-    outline: none;
-    border: 2px solid black;
-    background-color: white;
-    color: black;
+    margin: 10px 5px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    width: 100px;
+    height: 50px;
+    font-family: "Orelega One", serif;
+    font-size: medium;
 }
 
 .Invite-Button:hover {
-    color: white;
-    background-color: green;
-    border: 2px solid white;
+    background-color: rgba(0, 255, 0, 0.4);
+    cursor: pointer;
+    transition: 0.4s;
 }
 
 .Invite-Button:not(:hover) {
-    border: 2px solid black;
     background-color: white;
-    color: black;
+    cursor: default;
+    transition: 0.4s;
 }
+
+.Back-Button:hover {
+    background-color: rgba(255, 0, 0, 0.4);
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.Back-Button:not(:hover) {
+    background-color: white;
+    cursor: default;
+    transition: 0.4s;
+}
+
+.Create-Button {
+    width: 300px;
+}
+
+.Create-Button:hover {
+    background-color: rgba(0, 255, 0, 0.4);
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.Create-Button:not(:hover) {
+    background-color: white;
+    cursor: default;
+    transition: 0.4s;
+}
+
+

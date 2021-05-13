@@ -23,7 +23,8 @@ interface ViewLeagueState {
     displayLeagueList : Map<string, number> | undefined,
     displayLeagueTable : any,
     inCreate : boolean,
-    inInvite : boolean
+    inInvite : boolean,
+    inInbox : boolean
 }
 
 class ViewLeague extends Component<ViewLeagueProps, ViewLeagueState> {
@@ -36,12 +37,27 @@ class ViewLeague extends Component<ViewLeagueProps, ViewLeagueState> {
             displayLeagueList: undefined,
             displayLeagueTable: undefined,
             inCreate: false,
-            inInvite: false
+            inInvite: false,
+            inInbox: false
         }
     }
 
     componentDidMount(): void {
         this.getUserLeagues();
+    }
+
+    formatInvites = () => {
+        return (
+            <div className="Invites">
+                {this.props.leagueInvites.map(((league:string) =>
+                        <div key={league} className="Invite-Row">
+                            <p>{league}</p>
+                            <button className="Invitation-Button Join-Button" onClick={() => this.joinLeague(league)}>Join</button>
+                            <button className="Invitation-Button Decline-Button" onClick={() => this.declineLeague(league)}>Decline</button>
+                        </div>
+                ))}
+            </div>
+        )
     }
 
     formatLeagueList = (leagues : Map<string, number>) : any => {
@@ -63,7 +79,7 @@ class ViewLeague extends Component<ViewLeagueProps, ViewLeagueState> {
         return (
             <div className="League-List">
                 {displayList}
-                <button className="Create-Button" onClick={() => this.setState({ inCreate: true})}>
+                <button className="Your-League-Button Create-Button" onClick={() => this.setState({ inCreate: true})}>
                     Create League
                 </button>
             </div>
@@ -85,12 +101,13 @@ class ViewLeague extends Component<ViewLeagueProps, ViewLeagueState> {
             inviteButton = (<div/>)
         } else {
             backButton = (
-                <button className="Back-Button" onClick={() => this.setState({ leagueSelected: undefined})}>Back</button>
+                <button className="Your-League-Button Back-Button" onClick={() => this.setState({ leagueSelected: undefined})}>Back</button>
             )
             inviteButton = (
-                <button className="Invite-Button"
-                        onClick={() => this.setState({ inInvite: true})}
-                >Invite User</button>
+                <div className="Your-League-Button-Wrapper Invite-Button" onClick={() => this.setState({ inInvite: true})}>
+                    <p className="Invite-Text">Invite User</p>
+                    <p className="Plus"> + </p>
+                </div>
             )
         }
         let displayList : any[] = [];
@@ -120,21 +137,23 @@ class ViewLeague extends Component<ViewLeagueProps, ViewLeagueState> {
         }
         return (
             <div className="League-Table">
-                {backButton}
+                <div className="League-Button-Wrapper">
+                    {backButton}
+                    {inviteButton}
+                </div>
                 <h2>{this.state.leagueSelected}</h2>
                 <table>
                     <thead>
                         <tr>
                             <th>Rank</th>
                             <th>Username</th>
-                            {Utils.roundOptions.map((roundTitle:string) => <th key={roundTitle}>{roundTitle}</th>)}
+                            {Utils.roundOptions.map((roundTitle:string) => <th key={roundTitle}>{Utils.roundWithSpace(roundTitle)}</th>)}
                         </tr>
                     </thead>
                     <tbody>
                         {displayList}
                     </tbody>
                 </table>
-                {inviteButton}
             </div>
         )
     }
@@ -202,14 +221,23 @@ class ViewLeague extends Component<ViewLeagueProps, ViewLeagueState> {
     handleGlobalClick = () => {
         this.getLeagueDisplay("Global");
         this.setState({
-            leagueSelected: "Global"
+            leagueSelected: "Global",
+            inInbox: false
         })
     }
 
     handleYourLeaguesClick = () => {
         this.getUserLeagues();
         this.setState({
-            leagueSelected: undefined
+            leagueSelected: undefined,
+            inInbox: false
+        })
+    }
+
+    handleInboxClick = () => {
+        this.setState({
+            leagueSelected: undefined,
+            inInbox: true
         })
     }
 
@@ -238,9 +266,7 @@ class ViewLeague extends Component<ViewLeagueProps, ViewLeagueState> {
                     const curUsers : string[] = doc.data()['users'];
                     curUsers.push(this.props.username);
                     const curUserScores : any = doc.data()['userScores'];
-                    const userScores : number[] = []
-                    Utils.roundOptions.map(() => userScores.push(0));
-                    curUserScores[this.props.username] = userScores;
+                    curUserScores[this.props.username] = Utils.getAllRoundScores(this.props.userTeam, this.props.stats);
                     databaseRef.doc(doc.id).set({
                         users: curUsers,
                         userScores: curUserScores
@@ -275,12 +301,14 @@ class ViewLeague extends Component<ViewLeagueProps, ViewLeagueState> {
                     </div>
                 )
             }
-        } else {
+        } else if(!this.state.inInbox) {
             if (this.state.displayLeagueList) {
                 display = (this.formatLeagueList(this.state.displayLeagueList))
             } else {
                 display = (<p>Loading your leagues...</p>)
             }
+        } else {
+            display = (this.formatInvites());
         }
         if (this.state.userSelected) {
             if (this.state.displayTeam) {
@@ -321,25 +349,17 @@ class ViewLeague extends Component<ViewLeagueProps, ViewLeagueState> {
         }
         return(
             <div className="View-League">
-                <h1>League Standings</h1>
+                <h1>Leagues</h1>
                 <div className="League-Display">
                     <div>
                         <button className={this.state.leagueSelected === "Global" ? "League-Button Selected" : "League-Button"}
                                 onClick={() => this.handleGlobalClick()}>Global Standings</button>
-                        <button className = {this.state.leagueSelected !== "Global" ? "League-Button Selected" : "League-Button"}
+                        <button className = {this.state.leagueSelected !== "Global" && !this.state.inInbox ? "League-Button Selected" : "League-Button"}
                                 onClick={() => this.handleYourLeaguesClick()}>Your Leagues</button>
+                        <button className={this.state.inInbox ? "League-Button Selected" : "League-Button"}
+                                onClick={() => this.handleInboxClick()}>Invites</button>
                     </div>
                     {display}
-                    <div style={{backgroundColor: "red", textAlign: "center"}}>
-                        <h3> Invites </h3>
-                        {this.props.leagueInvites.map(((league:string) =>
-                            <div key={league}>
-                                <p>{league}</p>
-                                <button className="Green" onClick={() => this.joinLeague(league)}>Join</button>
-                                <button className="Red" onClick={() => this.declineLeague(league)}>Decline</button>
-                            </div>
-                            ))}
-                    </div>
                 </div>
                 {overDisplay}
             </div>
