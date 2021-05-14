@@ -363,13 +363,16 @@ export const statNames : string[] = ["Behinds", "Clearances", "Contested Marks",
 
 // Round options
 // TODO: change this dynamically
-export const roundOptions : string[] = ["Round1", "Round2", "Round3", "Round4", "Round5", "Total"];
+export const roundOptions : string[] = ["Round1", "Round2", "Round3", "Round4", "Round5", "Round6", "Round7", "Round8", "Total"];
 
 // Just the rounds
 export const justRounds : string[] = roundOptions.slice(0, roundOptions.length - 1);
 
+// Last round that has been fully played
+export const lastRound : string = justRounds[justRounds.length - 1];
+
 // Current round
-export const currentRound : string = justRounds[justRounds.length - 1];
+export const currentRound : string = lastRound.slice(0, 5) + (parseInt(lastRound.slice(5)) + 1)
 
 // Next round date
 // TODO: change this dynamically

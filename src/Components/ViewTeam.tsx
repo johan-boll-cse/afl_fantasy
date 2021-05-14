@@ -18,7 +18,7 @@ class ViewTeam extends Component<ViewTeamProps, ViewTeamState> {
     constructor(props: ViewTeamProps) {
         super(props);
         this.state = {
-            roundSelected: Utils.currentRound,
+            roundSelected: Utils.lastRound,
             playerSelected: undefined
         }
     }

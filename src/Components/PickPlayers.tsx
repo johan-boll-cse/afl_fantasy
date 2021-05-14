@@ -171,7 +171,7 @@ class PickPlayers extends Component<PickPlayersProps, PickPlayersState> {
         return(
             <div className="Pick-Players">
                 <h1>Pick Players</h1>
-                <p className="Selecting"> Selecting team for Round {parseInt(Utils.currentRound.slice(5, 6)) + 1}</p>
+                <p className="Selecting"> Selecting team for Round {Utils.roundWithSpace(Utils.currentRound)}</p>
                 <div className="Choose-Field-Container">
                     <div className="Choose-Players-Container">
                         <div className="Filter-Players">

@@ -234,7 +234,7 @@ class App extends Component<any, AppState>{
                     <div className="Not-Logged-In" key={"NotLoggedIn"}>
                         <h1>Log In or Sign Up to make a team!</h1>
                         <div>
-                            <p>Time Until Round {parseInt(Utils.currentRound.slice(5)) + 1}</p>
+                            <p>Time Until Round {Utils.roundWithSpace(Utils.currentRound)}</p>
                             <Countdown endDate={Utils.nextRoundDate}/>
                         </div>
                     </div>
@@ -248,7 +248,7 @@ class App extends Component<any, AppState>{
                 pickPlayers = (
                     <PickPlayers stats={this.state.stats}
                              saveTeam={this.handleSaveTeam}
-                             loadedPlayers={this.state.userTeam[Utils.currentRound]}
+                             loadedPlayers={this.state.userTeam[Utils.lastRound]}
                     />
                 );
             } else {
